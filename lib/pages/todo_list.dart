@@ -164,7 +164,7 @@ class _ToDoListState extends State<ToDoList> {
                                     fontFamily: 'Kanit'),
                               ))),
                       GestureDetector(
-                        child: Icon(Icons.add),
+                        child: const Icon(Icons.add),
                         onTap: () {
                           _displayDialogAddNewTodo(context, null);
                         },

@@ -3,7 +3,6 @@ import '../models/modelToDoCard.dart';
 import '../modules/module_center.dart';
 import '../modules/module_colors.dart';
 // ignore: depend_on_referenced_packages
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import '../widgets/color_picker.dart';
 import '../widgets/picker_icon.dart';
 // ignore: depend_on_referenced_packages
@@ -49,7 +48,7 @@ class _ToDoCardManagerState extends State<ToDoCardManager> {
         appBar: AppBar(
           title: Text(
             widget.isEdit ? 'Edit' : 'Add New',
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
           backgroundColor: ModuleColors.themeColor,
           actions: [
@@ -204,7 +203,7 @@ class _ToDoCardManagerState extends State<ToDoCardManager> {
                                     color: Colors.white,
                                     border: Border.all(
                                         color:
-                                            Color.fromARGB(255, 216, 216, 216),
+                                            const Color.fromARGB(255, 216, 216, 216),
                                         style: BorderStyle.solid)),
                                 width: MediaQuery.of(context).size.width - 40,
                                 child: PickerIcon(
@@ -236,7 +235,7 @@ class _ToDoCardManagerState extends State<ToDoCardManager> {
       barrierDismissible: false, // user must tap button for close dialog!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Warning!'),
+          title: const Text('Warning!'),
           content:
               const Text('Please complate your category info before add new.'),
           actions: <Widget>[

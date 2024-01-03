@@ -21,11 +21,11 @@ class ToDoTextDatabase {
   }
 
   Future _createDB_todoText(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = 'TEXT NOT NULL';
-    final boolType = 'BOOLEAN NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
-    final intType = 'INTEGER NOT NULL';
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const textType = 'TEXT NOT NULL';
+    const boolType = 'BOOLEAN NOT NULL';
+    const integerType = 'INTEGER NOT NULL';
+    const intType = 'INTEGER NOT NULL';
 
     await db.execute('''
 CREATE TABLE $tableToDoText (
@@ -103,7 +103,7 @@ CREATE TABLE $tableToDoText (
 
   Future<List<ModelTextToDo>> selectDataFromTableToDoText(int id) async {
     final db = await instance.database_list;
-    final orderBy = '${ToDoTextFields.textToDoID} ASC';
+    const orderBy = '${ToDoTextFields.textToDoID} ASC';
     final whereCondition = '${ToDoTextFields.todoCardID} = ${id}';
     List<Map<String, dynamic>> result =
         await db.query(tableToDoText, orderBy: orderBy, where: whereCondition);

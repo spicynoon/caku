@@ -7,7 +7,7 @@ class MyWidget extends StatelessWidget {
     // TODO: implement build
     return new Scaffold(
       appBar: AppBar(
-        title: Text("Confirmation AlertDialog"),
+        title: const Text("Confirmation AlertDialog"),
       ),
       body: Center(
         child: Column(
@@ -15,14 +15,14 @@ class MyWidget extends StatelessWidget {
           children: <Widget>[
             new MaterialButton(
               onPressed: () async {},
+              padding: const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0)),
+              color: Colors.green,
               child: const Text(
                 "Show Alert",
                 style: TextStyle(fontSize: 20.0),
               ),
-              padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0)),
-              color: Colors.green,
             ),
           ],
         ),

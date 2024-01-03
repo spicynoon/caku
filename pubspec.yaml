@@ -2,6 +2,7 @@ name: caku_app
 description: Caku - Catatan Kuliah
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
+# trunk-ignore(yamllint/quoted-strings)
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
@@ -35,6 +36,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
+  sqflite: ^2.3.0
+  path: ^1.8.3
+  http: ^1.1.2
+  slideable: ^0.0.2
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
@@ -48,14 +54,15 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_colorpicker: ^1.0.3
   flutter_slidable: ^3.0.0
-  sqflite: ^2.3.0
-  intl: ^0.18.1
   uuid: ^3.0.7
+  # trunk-ignore(yamllint/quoted-strings)
   flutter_launcher_icons: "^0.13.1"
 
 flutter_launcher_icons:
+  # trunk-ignore(yamllint/quoted-strings)
   android: "launcher_icon"
   ios: true
+  # trunk-ignore(yamllint/quoted-strings)
   image_path: "assets/images/logo/logo_icon_x.png"
 
 # For information on the generic Dart part of this file, see the

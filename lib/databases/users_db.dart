@@ -21,11 +21,11 @@ class UserDatabase {
   }
 
   Future _createDB_todoText(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = 'TEXT NOT NULL';
-    final boolType = 'BOOLEAN NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
-    final intType = 'INTEGER NOT NULL';
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const textType = 'TEXT NOT NULL';
+    const boolType = 'BOOLEAN NOT NULL';
+    const integerType = 'INTEGER NOT NULL';
+    const intType = 'INTEGER NOT NULL';
 
     await db.execute('''
 CREATE TABLE $tableUser (
@@ -91,7 +91,7 @@ CREATE TABLE $tableUser (
 
   Future<List<ModelUser>> selectDataFromTableByUUID(String uuid) async {
     final db = await instance.database_list;
-    final orderBy = '${UserFields.userID} ASC';
+    const orderBy = '${UserFields.userID} ASC';
     final whereCondition = '${UserFields.uuid} = "${uuid}"';
     List<Map<String, dynamic>> result =
         await db.query(tableUser, orderBy: orderBy, where: whereCondition);

@@ -1,9 +1,8 @@
 import 'dart:async';
 
+import 'package:caku_app/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import '../modules/module_colors.dart';
-
-import 'dashboard.dart';
 
 class LaunchScreen extends StatefulWidget {
   const LaunchScreen({super.key});
@@ -15,10 +14,11 @@ class LaunchScreen extends StatefulWidget {
 class _LaunchScreenState extends State<LaunchScreen> {
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 5), () {
-      Navigator.push(
+    Future.delayed(const Duration(seconds: 3), () {
+      // Menggantikan LaunchScreen dengan LoginPage setelah penundaan
+      Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Dashboard()),
+        MaterialPageRoute(builder: (context) => const LoginPage()),
       );
     });
     return Container(

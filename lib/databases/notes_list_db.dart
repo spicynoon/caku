@@ -23,10 +23,10 @@ class NotesListDatabase {
   }
 
   Future _createDB(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = 'TEXT NOT NULL';
-    final boolType = 'BOOLEAN NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const textType = 'TEXT NOT NULL';
+    const boolType = 'BOOLEAN NOT NULL';
+    const integerType = 'INTEGER NOT NULL';
 
     await db.execute('''
 CREATE TABLE $tableNotesList (
@@ -40,10 +40,10 @@ CREATE TABLE $tableNotesList (
   }
 
   Future _createDB_notesText(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = 'TEXT NOT NULL';
-    final boolType = 'BOOLEAN NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const textType = 'TEXT NOT NULL';
+    const boolType = 'BOOLEAN NOT NULL';
+    const integerType = 'INTEGER NOT NULL';
 
     await db.execute('''
 CREATE TABLE $tableNotesText (
@@ -81,7 +81,7 @@ CREATE TABLE $tableNotesText (
   Future<List<ModelNotesCard>> readAll() async {
     final db = await instance.database;
 
-    final orderBy = '${NotesListFields.notesCardID} DESC';
+    const orderBy = '${NotesListFields.notesCardID} DESC';
     final result = await db.query(tableNotesList, orderBy: orderBy);
 
     return result.map((json) => ModelNotesCard.fromJson(json)).toList();
@@ -119,7 +119,7 @@ CREATE TABLE $tableNotesText (
   Future<List<ModelNotesCard>> selectDataFromTable() async {
     final db = await instance.database;
     final _db_text = NotesTextDatabase.instance;
-    final orderBy = '${NotesListFields.notesCardID} DESC';
+    const orderBy = '${NotesListFields.notesCardID} DESC';
     List<Map<String, dynamic>> result =
         await db.query(tableNotesList, orderBy: orderBy);
 

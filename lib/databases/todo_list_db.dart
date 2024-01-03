@@ -23,10 +23,10 @@ class ToDoListDatabase {
   }
 
   Future _createDB(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = 'TEXT NOT NULL';
-    final boolType = 'BOOLEAN NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const textType = 'TEXT NOT NULL';
+    const boolType = 'BOOLEAN NOT NULL';
+    const integerType = 'INTEGER NOT NULL';
 
     await db.execute('''
 CREATE TABLE $tableToDoList (
@@ -40,10 +40,10 @@ CREATE TABLE $tableToDoList (
   }
 
   Future _createDB_todoText(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = 'TEXT NOT NULL';
-    final boolType = 'BOOLEAN NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const textType = 'TEXT NOT NULL';
+    const boolType = 'BOOLEAN NOT NULL';
+    const integerType = 'INTEGER NOT NULL';
 
     await db.execute('''
 CREATE TABLE $tableToDoText (
@@ -81,7 +81,7 @@ CREATE TABLE $tableToDoText (
   Future<List<ModelToDoCard>> readAll() async {
     final db = await instance.database;
 
-    final orderBy = '${ToDoListFields.todoCardID} DESC';
+    const orderBy = '${ToDoListFields.todoCardID} DESC';
     final result = await db.query(tableToDoList, orderBy: orderBy);
 
     return result.map((json) => ModelToDoCard.fromJson(json)).toList();
@@ -119,7 +119,7 @@ CREATE TABLE $tableToDoText (
   Future<List<ModelToDoCard>> selectDataFromTable() async {
     final db = await instance.database;
     final _db_text = ToDoTextDatabase.instance;
-    final orderBy = '${ToDoListFields.todoCardID} DESC';
+    const orderBy = '${ToDoListFields.todoCardID} DESC';
     List<Map<String, dynamic>> result =
         await db.query(tableToDoList, orderBy: orderBy);
 

@@ -1,4 +1,4 @@
-final String tableUser = 'users';
+const String tableUser = 'users';
 
 class ModelUser {
   int userID;

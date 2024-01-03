@@ -21,11 +21,11 @@ class NotesTextDatabase {
   }
 
   Future _createDB_notesText(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = 'TEXT NOT NULL';
-    final boolType = 'BOOLEAN NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
-    final intType = 'INTEGER NOT NULL';
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const textType = 'TEXT NOT NULL';
+    const boolType = 'BOOLEAN NOT NULL';
+    const integerType = 'INTEGER NOT NULL';
+    const intType = 'INTEGER NOT NULL';
 
     await db.execute('''
 CREATE TABLE $tableNotesText (
@@ -102,7 +102,7 @@ CREATE TABLE $tableNotesText (
 
   Future<List<ModelTextNotes>> selectDataFromTableNotesText(int id) async {
     final db = await instance.database_list;
-    final orderBy = '${NotesTextFields.textNotesID} ASC';
+    const orderBy = '${NotesTextFields.textNotesID} ASC';
     final whereCondition = '${NotesTextFields.notesCardID} = ${id}';
     List<Map<String, dynamic>> result =
         await db.query(tableNotesText, orderBy: orderBy, where: whereCondition);

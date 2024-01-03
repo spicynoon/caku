@@ -1,5 +1,4 @@
 // ignore: file_names
-import 'dart:ffi';
 
 class ModelColor {
   final String keyColor;

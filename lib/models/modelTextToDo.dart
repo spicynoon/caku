@@ -1,4 +1,4 @@
-final String tableToDoText = 'todotext';
+const String tableToDoText = 'todotext';
 
 class ModelTextToDo {
   int textToDoID;

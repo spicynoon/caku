@@ -1,4 +1,4 @@
-final String tableNotesText = 'textnotes';
+const String tableNotesText = 'textnotes';
 
 class ModelTextNotes {
   int textNotesID;

@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'dart:ui';
 import '../models/modelTextNotes.dart';
-import '../pages/notes_list.dart';
 
-final String tableNotesList = 'noteslist';
+const String tableNotesList = 'noteslist';
 
 class ModelNotesCard {
   int notesCardID;

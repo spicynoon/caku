@@ -1,4 +1,4 @@
-import 'dart:ffi';
+import 'dart:io';
 
 import 'package:caku_app/databases/notes_list_db.dart';
 import 'package:caku_app/models/modelNotesCard.dart';
@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../databases/todo_list_db.dart';
 import '../databases/users_db.dart';
-import '../models/modelTextToDo.dart';
 import '../models/modelToDoCard.dart';
 import '../modules/module_center.dart';
 import 'todo_card_manager.dart';
@@ -17,7 +16,7 @@ import '../widgets/card_todo.dart';
 import '../models/modelUser.dart';
 
 class Dashboard extends StatefulWidget {
-  Dashboard({Key? key}) : super(key: key);
+  const Dashboard({Key? key}) : super(key: key);
   final double addBtnSize = 30;
 
   @override
@@ -37,193 +36,128 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     final double screenDeviceSize = MediaQuery.of(context).size.width;
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          // Sliver App Bar
-          SliverAppBar(
-            backgroundColor: ModuleColors.themeColor,
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 10, top: 20, bottom: 20),
-              child: Container(
-                padding: EdgeInsets.all(1),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-                child: Image.asset(
-                  'assets/images/logo/logo_icon_x.png',
-                ),
+    return WillPopScope(
+      onWillPop: () async {
+        return await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Konfirmasi'),
+            content: const Text('Apakah Anda ingin keluar dari aplikasi?'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text('Tidak'),
               ),
-            ),
-            expandedHeight: 200,
-            floating: false,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Container(
-                color: ModuleColors.themeColor,
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text('Ya'),
               ),
-              title: Text('C   A   K   U     A   P   P',
-                  style: GoogleFonts.rubikMaze()),
-            ),
+            ],
           ),
-
-          // Sliver Items
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  bottom: 0, left: 15, right: 15, top: 15),
-              child: Row(
-                children: [
-                  Container(
-                    width: screenDeviceSize / 2,
-                    child: Text('Daftar Tugas',
-                        style: GoogleFonts.poppins(
-                          color: ModuleColors.fontCardColor,
-                          fontSize: 20,
-                        )),
-                  ),
-                  AddTaskCategory(screenDeviceSize, context)
-                ],
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
+        );
+      },
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            // Sliver App Bar
+            SliverAppBar(
+              backgroundColor: ModuleColors.themeColor,
+              leading: Padding(
+                padding: const EdgeInsets.only(left: 10, top: 20, bottom: 20),
                 child: Container(
+                  padding: const EdgeInsets.all(1),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                  ),
+                  child: Image.asset(
+                    'assets/images/logo/logo_icon_x.png',
+                  ),
+                ),
+              ),
+              expandedHeight: 200,
+              floating: false,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Container(
                   color: ModuleColors.themeColor,
-                  child: Column(
-                    children: List<Widget>.from(ModuleCenter.listCards),
+                ),
+                title: Text('C   A   K   U     A   P   P',
+                    style: GoogleFonts.rubikMaze()),
+              ),
+            ),
+            // Sliver Items
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 0, left: 15, right: 15, top: 15),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: screenDeviceSize / 2,
+                      child: Text('Daftar Tugas',
+                          style: GoogleFonts.poppins(
+                            color: ModuleColors.fontCardColor,
+                            fontSize: 20,
+                          )),
+                    ),
+                    AddTaskCategory(screenDeviceSize, context)
+                  ],
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    color: ModuleColors.themeColor,
+                    child: Column(
+                      children: List<Widget>.from(ModuleCenter.listCards),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  bottom: 0, left: 15, right: 15, top: 15),
-              child: Row(
-                children: [
-                  Container(
-                    width: screenDeviceSize / 2,
-                    child: Text('Daftar Catatan',
-                        style: GoogleFonts.poppins(
-                          color: ModuleColors.fontCardColor,
-                          fontSize: 20,
-                        )),
-                  ),
-                  AddNotesCategory(screenDeviceSize, context)
-                ],
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 0, left: 15, right: 15, top: 15),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: screenDeviceSize / 2,
+                      child: Text('Daftar Catatan',
+                          style: GoogleFonts.poppins(
+                            color: ModuleColors.fontCardColor,
+                            fontSize: 20,
+                          )),
+                    ),
+                    AddNotesCategory(screenDeviceSize, context)
+                  ],
+                ),
               ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Container(
-                  color: ModuleColors.themeColor,
-                  child: Column(
-                    children: List<Widget>.from(ModuleCenter.listNoteCards),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    color: ModuleColors.themeColor,
+                    child: Column(
+                      children: List<Widget>.from(ModuleCenter.listNoteCards),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   final double screenDeviceSize = MediaQuery.of(context).size.width;
-  //   return Scaffold(
-  //     appBar: AppBar(
-  //         title: const Text('Caku - Catatan Kuliah'),
-  //         backgroundColor: ModuleColors.themeColor,
-  //         automaticallyImplyLeading: false,
-  //         leading: Image.asset(
-  //           'assets/images/logo/logo_icon_x.png',
-  //           height: 5,
-  //           width: 5,
-  //         )),
-  //     body: SingleChildScrollView(
-  //       child: Container(
-  //         padding: const EdgeInsets.only(left: 15, top: 15),
-  //         child: Column(
-  //           crossAxisAlignment: CrossAxisAlignment.start,
-  //           children: [
-  //             Row(
-  //               mainAxisAlignment: MainAxisAlignment.start,
-  //               children: [
-  //                 Container(
-  //                   width: screenDeviceSize / 2,
-  //                   child: Text(
-  //                     'Daftar Tugas',
-  //                     style: TextStyle(
-  //                         color: ModuleColors.themeColor,
-  //                         fontSize: 20,
-  //                         fontFamily: 'Kanit'),
-  //                   ),
-  //                 ),
-  //                 AddTaskCategory(screenDeviceSize, context),
-  //               ],
-  //             ),
-  //             Column(
-  //               children: List<Widget>.from(ModuleCenter.listCards),
-  //             ),
-  //             SizedBox(height: 15),
-  //             Row(
-  //               mainAxisAlignment: MainAxisAlignment.start,
-  //               children: [
-  //                 Container(
-  //                   width: screenDeviceSize / 2,
-  //                   child: Text(
-  //                     'Daftar Catatan',
-  //                     style: TextStyle(
-  //                         color: ModuleColors.themeColor,
-  //                         fontSize: 20,
-  //                         fontFamily: 'Kanit'),
-  //                   ),
-  //                 ),
-  //                 AddNotesCategory(screenDeviceSize, context),
-  //               ],
-  //             ),
-  //             Column(
-  //               children: List<Widget>.from(ModuleCenter.listNoteCards),
-  //             ),
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-
-  // bottomNavigationBar: BottomNavigationBar(
-  //   items: const [
-  //     BottomNavigationBarItem(
-  //       icon: Icon(Icons.dashboard),
-  //       label: 'Dasbor',
-  //     ),
-  //     BottomNavigationBarItem(
-  //       icon: Icon(Icons.task),
-  //       label: 'Tugas',
-  //     ),
-  //     BottomNavigationBarItem(icon: Icon(Icons.notes), label: 'Catatan'),
-  //   ],
-  //   currentIndex: _selectedIndex,
-  //   onTap: (index) {
-  //     setState(() {
-  //       _selectedIndex = index;
-  //     });
-  //   },
-  // ),
-  //   );
-  // }
 
   Container AddTaskCategory(double screenDeviceSize, BuildContext context) {
     return Container(

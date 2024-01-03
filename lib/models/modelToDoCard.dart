@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'dart:ui';
 import '../models/modelTextToDo.dart';
-import '../pages/todo_list.dart';
 
-final String tableToDoList = 'todolist';
+const String tableToDoList = 'todolist';
 
 class ModelToDoCard {
   int todoCardID;
