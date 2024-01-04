@@ -4,13 +4,12 @@
   <img src="assets/images/logo/logo_icon_x.png" alt="Nama Aplikasi" width="100" height="100" style="float: right; margin-left: 20px;">
 </p>
 
-Selamat datang di Caku - Catatan Kuliah, solusi terdepan untuk membuat pengalaman kuliah kamu lebih teratur dan produktif. Caku didesain khusus untuk membantu kamu mengelola tugas dan catatan perkuliahan dengan mudah dan efisien. Aplikasi Caku sangat bermanfaat bagi pelajar terkhusus mahasiswa yang ingin meningkatkan produktivitas dan efisiensi dalam proses akademik. Caku memudahkan penggunanya untuk memanage tugas dan catatan selama perkuliahan sehingga catatan dan tugas dapat dipantau di satu tempat. Sebagai gambaran, kamu dapat melihat [Demo aplikasi Caku 📽️di sini](URL_demo_aplikasi), atau kamu dapat melihat detail gambaran umum caku di bawah ini:
+Selamat datang di Caku - Catatan Kuliah, solusi terdepan untuk membuat pengalaman kuliah kamu lebih teratur dan produktif. Caku didesain khusus untuk membantu kamu mengelola tugas dan catatan perkuliahan dengan mudah dan efisien. Aplikasi Caku sangat bermanfaat bagi pelajar terkhusus mahasiswa yang ingin meningkatkan produktivitas dan efisiensi dalam proses akademik. Caku memudahkan penggunanya untuk memanage tugas dan catatan selama perkuliahan sehingga catatan dan tugas dapat dipantau di satu tempat. Berikut kamu dapat melihat detail gambaran umum Caku - Catatan Kuliah di bawah ini:
 
 <details>
   <summary><b>🚩 Link Penting</b></summary>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶️ Demo Aplikasi => Tonton <a href="#">di sini</a><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶️ Presentasi Pitch Deck => Tonton <a href="#">di sini</a><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⏬ Dapatkan Aplikasi => Download <a href="#">di sini</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶️ Presentasi Pitch Deck => Tonton <a href="https://youtu.be/xmsqb6K8D70">di sini</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⏬ Dapatkan Aplikasi => Download <a href="https://play.google.com/store/apps/details?id=com.catatankuliah.caku">di sini</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➡️ Slides Pitch Deck => Lihat <a href="https://www.canva.com/design/DAF4WYSmnfk/Ke43hxjDQec8j1uIJDrS6Q/view?utm_content=DAF4WYSmnfk&utm_campaign=designshare&utm_medium=link&utm_source=editor">di sini</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📶 Repository API => Akses <a href="https://github.com/zuhadha/caku-api-test" >di sini</a>
 </details>
@@ -104,5 +103,5 @@ Selamat datang di Caku - Catatan Kuliah, solusi terdepan untuk membuat pengalama
 Bagaimana? Sudah tertarik untuk mendownload Caku?</br>
 Dapatkan segera di Playstore melalui link berikut
 <p>↘️↘️↘️⬇️⬇️⬇️↙️↙️↙️</p>
-<p>➡️➡️➡️<a href="google.com">download</a>⬅️⬅️⬅️</p> 
+<p>➡️➡️➡️<a href="https://play.google.com/store/apps/details?id=com.catatankuliah.caku)https://play.google.com/store/apps/details?id=com.catatankuliah.caku">download</a>⬅️⬅️⬅️</p> 
 <p>↗️↗️↗️⬆️⬆️⬆️↖️↖️↖️</p>
