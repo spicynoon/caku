@@ -6,7 +6,7 @@
 
 Selamat datang di Caku - Catatan Kuliah, solusi terdepan untuk membuat pengalaman kuliah kamu lebih teratur dan produktif. Caku didesain khusus untuk membantu kamu mengelola tugas dan catatan perkuliahan dengan mudah dan efisien. Aplikasi Caku sangat bermanfaat bagi pelajar terkhusus mahasiswa yang ingin meningkatkan produktivitas dan efisiensi dalam proses akademik. Caku memudahkan penggunanya untuk memanage tugas dan catatan selama perkuliahan sehingga catatan dan tugas dapat dipantau di satu tempat. Berikut kamu dapat melihat detail gambaran umum Caku - Catatan Kuliah di bawah ini:
 
-<details>
+<details open>
   <summary><b>🚩 Link Penting</b></summary>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶️ Presentasi Pitch Deck => Tonton <a href="https://youtu.be/xmsqb6K8D70">di sini</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⏬ Dapatkan Aplikasi => Download <a href="https://play.google.com/store/apps/details?id=com.catatankuliah.caku">di sini</a><br>
