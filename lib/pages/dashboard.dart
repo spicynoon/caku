@@ -4,6 +4,7 @@ import 'package:caku_app/databases/notes_list_db.dart';
 import 'package:caku_app/models/modelNotesCard.dart';
 import 'package:caku_app/pages/notes_card_manager.dart';
 import 'package:caku_app/widgets/card_notes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../databases/todo_list_db.dart';
@@ -18,6 +19,9 @@ import '../models/modelUser.dart';
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
   final double addBtnSize = 30;
+  void signOut() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -32,6 +36,9 @@ class _DashboardState extends State<Dashboard> {
   late ModelUser oUser =
       ModelUser(userID: 0, userName: "", email: "", uuid: "");
   int _selectedIndex = 0;
+  void signOut() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,6 +161,11 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: signOut,
+          backgroundColor: ModuleColors.themeColor,
+          child: Icon(Icons.logout, color: Colors.white),
         ),
       ),
     );

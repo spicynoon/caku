@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:caku_app/pages/login_page.dart';
+import 'package:caku_app/pages/main_page.dart';
 import 'package:flutter/material.dart';
 import '../modules/module_colors.dart';
 
@@ -18,7 +19,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
       // Menggantikan LaunchScreen dengan LoginPage setelah penundaan
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const LoginPage()),
+        MaterialPageRoute(builder: (context) => const MainPage()),
       );
     });
     return Container(

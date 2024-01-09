@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "799873178681",
+    "project_id": "caku-9f00d",
+    "storage_bucket": "caku-9f00d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799873178681:android:ae13240db7e40030c381e8",
+        "android_client_info": {
+          "package_name": "com.example.caku"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3a9NQzIaso78JCgiA0kqQMI8MZ6_-VYw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

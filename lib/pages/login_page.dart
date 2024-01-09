@@ -1,7 +1,5 @@
-import 'package:caku_app/pages/dashboard.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,81 +9,109 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
-  List<Map<String, dynamic>> users = []; // Store user data
+  Future loginUser() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
+    // try {
+    //   await FirebaseAuth.instance.signInWithEmailAndPassword(
+    //     email: _emailController.text.trim(),
+    //     password: _passwordController.text.trim(),
+    //   );
+    //   Navigator.pop(context);
+    // } on FirebaseAuthException catch (e) {
+    //   Navigator.pop(context);
+    //   showErrorMessage(e.code);
+    // }
+  }
+
+  void showErrorMessage(String message) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+            title: Text('Incorrect Email'),
+          );
+        });
+  }
 
   @override
-  void initState() {
-    super.initState();
-    fetchUsers(); // Fetch user data when the page is initialized
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
+  // List<Map<String, dynamic>> users = []; // Store user data
+  // Future<void> fetchUsers() async {
+  //   try {
+  //     final response = await http.get(
+  //       Uri.parse(
+  //           'https://caku-api-test-production.up.railway.app/users'), // Replace with your API endpoint
+  //     );
 
-  Future<void> fetchUsers() async {
-    try {
-      final response = await http.get(
-        Uri.parse(
-            'https://caku-api-test-production.up.railway.app/users'), // Replace with your API endpoint
-      );
+  //     if (response.statusCode == 200) {
+  //       // Parse and store user data
+  //       print("we get the user data");
+  //       print(response.body);
+  //       List<dynamic> responseData = json.decode(response.body) as List;
+  //       users = List<Map<String, dynamic>>.from(responseData);
+  //     } else {
+  //       // Handle API error
+  //       print('Failed to fetch users');
+  //     }
+  //   } catch (e) {
+  //     // Handle network or parsing errors
+  //     print('Error fetching users: $e');
+  //   }
+  // }
 
-      if (response.statusCode == 200) {
-        // Parse and store user data
-        print("we get the user data");
-        print(response.body);
-        List<dynamic> responseData = json.decode(response.body) as List;
-        users = List<Map<String, dynamic>>.from(responseData);
-      } else {
-        // Handle API error
-        print('Failed to fetch users');
-      }
-    } catch (e) {
-      // Handle network or parsing errors
-      print('Error fetching users: $e');
-    }
-  }
+  // void loginUser() {
+  //   final enteredUsername = usernameController.text;
+  //   final enteredPassword = passwordController.text;
 
-  void loginUser() {
-    final enteredUsername = usernameController.text;
-    final enteredPassword = passwordController.text;
+  //   // Check login credentials
+  //   try {
+  //     final matchingUser = users.firstWhere(
+  //       (user) =>
+  //           (user['username'] == enteredUsername &&
+  //               user['password'] == enteredPassword) ||
+  //           ('cakuadmin' == enteredUsername &&
+  //               '123cakuadmin' == enteredPassword),
+  //     );
 
-    // Check login credentials
-    try {
-      final matchingUser = users.firstWhere(
-        (user) =>
-            user['username'] == enteredUsername &&
-            user['password'] == enteredPassword,
-      );
+  //     // Successful login logic
+  //     usernameController.text = '';
+  //     passwordController.text = '';
+  //     loginSuccess('Login success');
+  //     Navigator.pushReplacement(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => const Dashboard()),
+  //     );
+  //   } catch (e) {
+  //     // Handle login failure
+  //     loginFailed('Login Failed');
+  //   }
+  // }
 
-      // Successful login logic
-      usernameController.text = '';
-      passwordController.text = '';
-      loginSuccess('Login success');
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const Dashboard()),
-      );
-    } catch (e) {
-      // Handle login failure
-      loginFailed('Login Failed');
-    }
-  }
+  // void loginSuccess(String message) {
+  //   final snackBar = SnackBar(content: Text(message));
+  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  // }
 
-  void loginSuccess(String message) {
-    final snackBar = SnackBar(content: Text(message));
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
-  void loginFailed(String message) {
-    final snackBar = SnackBar(
-      content: Text(
-        message,
-        style: const TextStyle(color: Colors.white),
-      ),
-      backgroundColor: Colors.red,
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
+  // void loginFailed(String message) {
+  //   final snackBar = SnackBar(
+  //     content: Text(
+  //       message,
+  //       style: const TextStyle(color: Colors.white),
+  //     ),
+  //     backgroundColor: Colors.red,
+  //   );
+  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  // }
 
 ////////////////////////////////////////////////////////////////
   Widget inputFile({label, obscureText = false}) {
@@ -153,11 +179,11 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     TextField(
-                      controller: usernameController,
-                      decoration: const InputDecoration(labelText: 'Username'),
+                      controller: _emailController,
+                      decoration: const InputDecoration(labelText: 'Email'),
                     ),
                     TextField(
-                      controller: passwordController,
+                      controller: _passwordController,
                       obscureText: true,
                       decoration: const InputDecoration(labelText: 'Password'),
                     ),

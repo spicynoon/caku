@@ -5,7 +5,7 @@ import '../models/modelToDoCard.dart';
 import '../modules/module_center.dart';
 import '../modules/module_colors.dart';
 import '../pages/todo_card_manager.dart';
-import '../pages/todo_list.dart';
+import 'todo_list.dart';
 import '../widgets/cupertino_actionsheet.dart';
 
 class CardToDo extends StatefulWidget {

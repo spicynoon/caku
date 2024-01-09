@@ -5,8 +5,8 @@ import '../models/modelTextToDo.dart';
 import '../models/modelToDoCard.dart';
 import '../modules/module_center.dart';
 import '../modules/module_colors.dart';
-import '../widgets/listview_todo.dart';
-import '../widgets/tableview_row_todo.dart';
+import 'listview_todo.dart';
+import 'tableview_row_todo.dart';
 
 class ToDoList extends StatefulWidget {
   ModelToDoCard oModuleCard;
