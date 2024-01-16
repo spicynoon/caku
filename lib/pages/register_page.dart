@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -13,31 +14,57 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  Future<void> registerUser() async {
-    final username = usernameController.text;
-    final password = passwordController.text;
-    final body = {
-      "username": username,
-      "password": password,
-    };
-    // submit data to the server
-    const url = 'https://caku-api-test-production.up.railway.app/users';
-    final uri = Uri.parse(url);
-    final response = await http.post(uri,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode(body));
-    // Show success or fail message based on status
-    if (response.statusCode == 201) {
-      usernameController.text = '';
-      passwordController.text = '';
-      registerSuccess('New account is created');
-      Navigator.pop(context);
-    } else {
-      print('Creation Failed');
-      registerFailed('Failed to create account');
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  Future registerUser() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: usernameController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      // Registration successful
+      registerSuccess('User registered successfully');
+    } catch (e) {
+      // Handle the specific error for existing email
+      if (e is FirebaseAuthException && e.code == 'email-already-in-use') {
+        registerFailed('The account already exists for that email.');
+        // You can show a snackbar, toast, or any other UI message to inform the user.
+      } else {
+        // Handle other registration errors
+        registerFailed('Error during registration: $e');
+      }
     }
+
+  // Future<void> registerUser() async {
+  //   final username = usernameController.text;
+  //   final password = passwordController.text;
+  //   final body = {
+  //     "username": username,
+  //     "password": password,
+  //   };
+  //   // submit data to the server
+  //   const url = 'https://caku-api-test-production.up.railway.app/users';
+  //   final uri = Uri.parse(url);
+  //   final response = await http.post(uri,
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: jsonEncode(body));
+  //   // Show success or fail message based on status
+  //   if (response.statusCode == 201) {
+  //     usernameController.text = '';
+  //     passwordController.text = '';
+  //     registerSuccess('New account is created');
+  //     Navigator.pop(context);
+  //   } else {
+  //     print('Creation Failed');
+  //     registerFailed('Failed to create account');
+  //   }
   }
 
   void registerSuccess(String message) {
@@ -92,7 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     TextField(
                       controller: usernameController,
-                      decoration: const InputDecoration(labelText: 'Username'),
+                      decoration: const InputDecoration(labelText: 'Email'),
                     ),
                     TextField(
                       controller: passwordController,
